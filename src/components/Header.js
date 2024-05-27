@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AppContext } from "../context/Context";
+import { LuWaves } from "react-icons/lu";
 
 export default function Header() {
+  const { userName } = useContext(AppContext);
+
   return (
     <header className="container-fluid bg-warning">
       <div className="container p-2">
         <div className="row align-items-center">
           <div className="logo col-auto">
-            <h2>My logo</h2>
+            <h2>
+              <LuWaves /> {userName && `- Welcome, ${userName}`}
+            </h2>
           </div>
           <nav className="col-auto">
             <ul>

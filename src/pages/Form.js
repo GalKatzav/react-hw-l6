@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { AppContext } from "../context/Context";
 
 export default function Form() {
   const {
@@ -7,10 +8,14 @@ export default function Form() {
     handleSubmit,
     formState: { errors },
     getValues,
+    reset,
   } = useForm();
+  const { setUserName } = useContext(AppContext);
 
   const onSub = (data) => {
+    setUserName(data.name); // Set the user's name in the context
     console.log(data);
+    reset(); // Reset the form fields
   };
 
   return (
@@ -19,12 +24,18 @@ export default function Form() {
       <form onSubmit={handleSubmit(onSub)} className="col-md-6">
         <label>Name:</label>
         <input
-          {...register("name", { required: true, minLength: 2 })}
+          {...register("name", {
+            required: true,
+            minLength: 2,
+            pattern: /^[A-Za-z ]+$/,
+          })}
           type="text"
           className="form-control"
         />
         {errors.name && (
-          <div className="text-danger">* Enter valid name (min 2 chars)</div>
+          <div className="text-danger">
+            * Enter valid name (only letters and spaces, min 2 chars)
+          </div>
         )}
 
         <label>Email:</label>

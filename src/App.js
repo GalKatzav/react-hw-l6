@@ -3,10 +3,11 @@ import "./App.css";
 import Form from "./pages/Form";
 import Layout from "./layouts/Layout";
 import Page404 from "./pages/Page404";
+import ContextProvider from "./context/Context";
 
 function App() {
   return (
-    <div className="App">
+    <ContextProvider>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Layout />}>
@@ -16,7 +17,7 @@ function App() {
           </Route>
         </Routes>
       </BrowserRouter>
-    </div>
+    </ContextProvider>
   );
 }
 

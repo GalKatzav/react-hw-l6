@@ -1,5 +1,16 @@
-import React from "react";
+import { createContext, useState } from "react";
 
-export default function Context() {
-  return <div>Context</div>;
+export const AppContext = createContext(null);
+
+export default function ContextProvider({ children }) {
+  const [userName, setUserName] = useState("");
+
+  const globalVal = {
+    userName,
+    setUserName,
+  };
+
+  return (
+    <AppContext.Provider value={globalVal}>{children}</AppContext.Provider>
+  );
 }
