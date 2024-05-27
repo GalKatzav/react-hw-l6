@@ -12,7 +12,8 @@ export default function Header() {
         <div className="row align-items-center">
           <div className="logo col-auto">
             <h2>
-              <LuWaves /> {userName && `- Welcome, ${userName}`}
+              <LuWaves style={{ fontSize: "46px", color: "green" }} />{" "}
+              {userName && `- Welcome, ${userName}`}
             </h2>
           </div>
           <nav className="col-auto">
